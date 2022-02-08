@@ -20,13 +20,14 @@ const autoQueryDisableOptions = { enabled: false };
 
 export const useSuperHeroesData = (onSuccess, onError, refetchInterval) => {
   const queryId = "super-heroes";
+  const _refetchInterval = refetchInterval ?? false;
   return useQuery(
     queryId,
     fetchSuperHeros,
     Object.assign(queryOptions, {
       onSuccess,
       onError,
-      refetchInterval,
+      _refetchInterval,
     })
   );
 };

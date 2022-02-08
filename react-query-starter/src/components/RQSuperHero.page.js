@@ -1,7 +1,4 @@
-import {
-  useLocation,
-  useParams,
-} from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useSuperHeroData } from "../hooks/useSuperHeroData";
 
 export function RQSuperHeroPage() {
