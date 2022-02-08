@@ -14,7 +14,7 @@
 - Reset
 - Remove
 
-## Caching
+## Caching Option
 
 ### cacheTime
 
@@ -28,6 +28,22 @@
 - staleTime 동안 refetching 없이 캐시데이터만 사용자에게 보여준다.
 - 따라서 서버로의 request의 횟수를 줄일 수 있다.
 - staleTime의 기본값은 0이다.
+
+### refetchingOnMount
+
+- true(기본값)
+  - stale query인 경우 컴포넌트 마운트시에 refetch(background fetch)를 시도함.
+- false
+  - 컴포넌트 마운트시에 refetch를 시도하지 않음.
+- 'always'
+  - 컴포넌트 마운트시에 stale 여부와 상관없이 항상 refetch 함
+
+### refetchOnWindowFocus
+
+- true(기본값)
+- false
+- 'always'
+  - window focusing 시에 stale 여부와 상관없이 항상 refetch 함
 
 ## RQ devtool 사용법
 

@@ -9,7 +9,16 @@ export const RQSuperHeroesPage = () => {
   const { data, isLoading, isError, error, isFetching } = useQuery(
     queryKey,
     fetchSuperHeros,
-    { cacheTime: 1000 * 60 * 5, staleTime: 30000 }
+    {
+      cacheTime: 1000 * 60 * 5,
+      staleTime: 1,
+      refetchOnWindowFocus: true,
+      refetchOnMount: true,
+      //polling
+      refetchInterval: 2000,
+      //polling when user are not focus the window
+      refetchIntervalInBackground: true,
+    }
   );
 
   console.log({ isLoading, isFetching });
