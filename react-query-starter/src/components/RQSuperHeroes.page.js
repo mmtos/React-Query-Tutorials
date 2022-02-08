@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 
 const fetchSuperHeros = () => {
-  return axios.get("http://localhost:4000/superheroes1");
+  return axios.get("http://localhost:4000/superheroes");
 };
 const queryOptions = {
   cacheTime: 1000 * 60 * 5,
@@ -39,6 +39,7 @@ export const RQSuperHeroesPage = () => {
       onSuccess,
       onError,
       refetchInterval: _refetchInterval,
+      select: (data) => data.data.map((hero) => hero.name),
     })
   );
 
@@ -58,7 +59,7 @@ export const RQSuperHeroesPage = () => {
       <h2>React Query Super Heroes Page</h2>
       <button onClick={refetch}>fetch heroes</button>
       {data?.data.map((hero) => {
-        return <div key={hero.name}>{hero.name}</div>;
+        return <div key={hero}>{hero}</div>;
       })}
     </>
   );
