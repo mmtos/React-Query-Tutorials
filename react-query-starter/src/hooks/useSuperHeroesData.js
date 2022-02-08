@@ -10,7 +10,7 @@ const queryOptions = {
   staleTime: 0,
   refetchOnWindowFocus: true,
   refetchOnMount: true,
-  select: (data) => data.data.map((hero) => hero.name),
+  //select: (data) => data.data.map((hero) => hero.name),
   // //polling
   // refetchInterval: 2000,
   // //polling when user are not focus the window
@@ -19,9 +19,9 @@ const queryOptions = {
 const autoQueryDisableOptions = { enabled: false };
 
 export const useSuperHeroesData = (onSuccess, onError, refetchInterval) => {
-  const queryKey = "super-heroes";
+  const queryId = "super-heroes";
   return useQuery(
-    queryKey,
+    queryId,
     fetchSuperHeros,
     Object.assign(queryOptions, {
       onSuccess,
