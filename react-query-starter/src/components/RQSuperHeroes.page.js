@@ -6,17 +6,20 @@ const fetchSuperHeros = () => {
 };
 export const RQSuperHeroesPage = () => {
   const queryKey = "super-heroes";
-  const { data, isLoading, isError, error } = useQuery(
+  const { data, isLoading, isError, error, isFetching } = useQuery(
     queryKey,
-    fetchSuperHeros
+    fetchSuperHeros,
+    { cacheTime: 1000 * 60 * 5, staleTime: 30000 }
   );
 
+  console.log({ isLoading, isFetching });
   if (isLoading) {
+    // default : 5분동안 cache
     return <h2>Loading..</h2>;
   }
 
   if (isError) {
-    //retry가 기본적으로 설정되어 있어서 좀더 늦게 에러메시지가 뜸.
+    // default : retry 설정되어 있어서 좀더 늦게 에러메시지가 뜸.
     return <h2>{error.message}</h2>;
   }
 
