@@ -1,29 +1,11 @@
-import axios from "axios";
 import { useState } from "react";
-import { useQuery } from "react-query";
-
-const fetchSuperHeros = () => {
-  return axios.get("http://localhost:4000/superheroes");
-};
-const queryOptions = {
-  cacheTime: 1000 * 60 * 5,
-  staleTime: 1,
-  refetchOnWindowFocus: true,
-  refetchOnMount: true,
-
-  // //polling
-  // refetchInterval: 2000,
-  // //polling when user are not focus the window
-  // refetchIntervalInBackground: true,
-};
-const autoQueryDisableOptions = { enabled: false };
+import { useSuperHeroesData } from "../hooks/useSuperHeroesData";
 
 export const RQSuperHeroesPage = () => {
-  const queryKey = "super-heroes";
   const [_refetchInterval, set_refetchInterval] = useState(3000);
   const onSuccess = (data) => {
     console.log("perform side effect after query", data);
-    if (data.data.length === 4) {
+    if (data.length === 4) {
       set_refetchInterval(false);
     }
   };
@@ -32,16 +14,8 @@ export const RQSuperHeroesPage = () => {
     set_refetchInterval(false);
   };
 
-  const { data, isLoading, isError, error, isFetching, refetch } = useQuery(
-    queryKey,
-    fetchSuperHeros,
-    Object.assign(queryOptions, {
-      onSuccess,
-      onError,
-      refetchInterval: _refetchInterval,
-      select: (data) => data.data.map((hero) => hero.name),
-    })
-  );
+  const { data, isLoading, isError, error, isFetching, refetch } =
+    useSuperHeroesData(onSuccess, onError, _refetchInterval);
 
   console.log({ isLoading, isFetching });
   if (isLoading || isFetching) {
@@ -58,7 +32,7 @@ export const RQSuperHeroesPage = () => {
     <>
       <h2>React Query Super Heroes Page</h2>
       <button onClick={refetch}>fetch heroes</button>
-      {data?.data.map((hero) => {
+      {data?.map((hero) => {
         return <div key={hero}>{hero}</div>;
       })}
     </>
