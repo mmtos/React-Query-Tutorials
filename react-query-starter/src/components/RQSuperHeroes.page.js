@@ -30,6 +30,7 @@ export const RQSuperHeroesPage = () => {
 
   const handleAddHeroClick = () => {
     console.log(name, alterEgo);
+    //post로 새롭게 생성된 객체를 return 해줄 수 있다.(REST API)
     mutate({ name, alterEgo });
   };
 

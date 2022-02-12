@@ -41,10 +41,17 @@ export const useAddSuperHeroData = () => {
   // key가 필요 없음. 첫번째 인자는 mutation Function
   const queryClient = useQueryClient();
   return useMutation(addSuperHero, {
-    // what is onSettle
-    onSuccess: () => {
-      // invalidate -> refetch
-      queryClient.invalidateQueries("super-heroes");
+    // what is onSettle?
+    onSuccess: (data) => {
+      //1. invalidate -> refetch
+      //queryClient.invalidateQueries("super-heroes");
+      //2. use POST response data, no additional fetch
+      queryClient.setQueryData("super-heroes", (oldQueryData) => {
+        return {
+          ...oldQueryData,
+          data: [...oldQueryData.data, data.data],
+        };
+      });
     },
   });
 };
