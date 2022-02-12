@@ -51,6 +51,11 @@
 - 개수 동적 변경 + 병렬실행 : dynamic parallel query.. useQueries
 - 순서가 있는 쿼리들 실행하기 : dependent Queries.. 이전 쿼리가 실행 완료 되었을때만 config obj에 enable을 true가 되도록 설정.
 
+## Initial Query data
+
+- 리스트에서 상세정보를 일부 들고 있는 경우 상세쿼리의 initial data로 넘겨줘서 상세쿼리 fetching시 미리 보여줄 수 있다.
+- 리스트에서 상세정보를 모두 들고 있는 경우는 추가적인 상세쿼리가 필요 없을 수 있다.
+
 ## RQ devtool 사용법
 
 ```
