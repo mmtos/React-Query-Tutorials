@@ -19,15 +19,47 @@
       "id": 4,
       "name": "My Hero",
       "alterEgo": "Neo"
+    },
+    {
+      "name": "One",
+      "alterEgo": "일",
+      "id": 5
+    },
+    {
+      "name": "Two",
+      "alterEgo": "이",
+      "id": 6
     }
   ],
   "friends": [
-    { "id": 1, "name": "ABC" },
-    { "id": 2, "name": "DEF" },
-    { "id": 3, "name": "GHI" }
+    {
+      "id": 1,
+      "name": "ABC"
+    },
+    {
+      "id": 2,
+      "name": "DEF"
+    },
+    {
+      "id": 3,
+      "name": "GHI"
+    }
   ],
-  "users": [{ "id": "abc@def.com", "channelId": "react.ch" }],
-  "channels": [{ "id": "react.ch", "courses": ["query", "route"] }],
+  "users": [
+    {
+      "id": "abc@def.com",
+      "channelId": "react.ch"
+    }
+  ],
+  "channels": [
+    {
+      "id": "react.ch",
+      "courses": [
+        "query",
+        "route"
+      ]
+    }
+  ],
   "colors": [
     {
       "id": 1,
