@@ -58,7 +58,21 @@
 
 ## 페이징
 
-- useQuery 설정 : keepPreviousData: true,
+- keepPreviousData: true (이전 데이터를 화면에 남긴 상태에서 새로운 페이지를 fetch함.)
+
+- infinite paging
+  - useInfiniteQuery 사용
+  - return 받는 data가 pages로 그룹화되어있음.
+  - fetchNextPage
+  - getNextPageParam
+
+## mutation
+
+- optimistic update : mutate를 위한 post요청을 보내기 전에 미리 화면을 업데이트 함.
+
+- 문제시 rollback
+
+- useMutate의 onMutate,onError,onSettled Callback을 이용해서 구현
 
 ## RQ devtool 사용법
 

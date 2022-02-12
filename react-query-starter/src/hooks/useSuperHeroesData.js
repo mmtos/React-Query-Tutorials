@@ -41,17 +41,46 @@ export const useAddSuperHeroData = () => {
   // key가 필요 없음. 첫번째 인자는 mutation Function
   const queryClient = useQueryClient();
   return useMutation(addSuperHero, {
-    // what is onSettle?
-    onSuccess: (data) => {
-      //1. invalidate -> refetch
-      //queryClient.invalidateQueries("super-heroes");
-      //2. use POST response data, no additional fetch
+    // onSuccess: (data) => {
+    //   //1. invalidate -> refetch
+    //   //queryClient.invalidateQueries("super-heroes");
+    //   //2. use POST response data, no additional fetch
+    //   queryClient.setQueryData("super-heroes", (oldQueryData) => {
+    //     return {
+    //       ...oldQueryData,
+    //       data: [...oldQueryData.data, data.data],
+    //     };
+    //   });
+    // },
+    onMutate: async (mutationParams) => {
+      //onMutate is fired before mutation
+      const newHero = mutationParams;
+
+      //optimistic update 1. cancelQueries
+      await queryClient.cancelQueries("super-heroes");
+      const previousHero = queryClient.getQueryData("super-heroes");
+      //optimistic update 2. setData with mutateParams
       queryClient.setQueryData("super-heroes", (oldQueryData) => {
         return {
           ...oldQueryData,
-          data: [...oldQueryData.data, data.data],
+          data: [
+            ...oldQueryData.data,
+            { id: oldQueryData?.data?.length + 1, ...newHero },
+          ],
         };
       });
+      //optimistic update 3. return object for rollback (rollback in onError)
+      return {
+        previousHero,
+      };
+    },
+    onError: (_error, mutationParams, context) => {
+      //onError is fired when encounter error during onMutate
+      queryClient.setQueryData("super-heroes", context.previousHero);
+    },
+    onSettled: () => {
+      //like-finally. whether onMutate failed or successed, onSettled is fired
+      queryClient.invalidateQueries("super-heroes");
     },
   });
 };
