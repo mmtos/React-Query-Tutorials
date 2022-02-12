@@ -25,5 +25,7 @@
     { "id": 1, "name": "ABC" },
     { "id": 2, "name": "DEF" },
     { "id": 3, "name": "GHI" }
-  ]
+  ],
+  "users": [{ "id": "abc@def.com", "channelId": "react.ch" }],
+  "channels": [{ "id": "react.ch", "courses": ["query", "route"] }]
 }

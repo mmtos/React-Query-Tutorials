@@ -45,6 +45,12 @@
 - 'always'
   - window focusing 시에 stale 여부와 상관없이 항상 refetch 함
 
+## 여러개의 쿼리를 사용하는 경우
+
+- 정해진 개수 병렬 실행 : parallel query .. 그냥 useQuery 두번 쓰면됨.
+- 개수 동적 변경 + 병렬실행 : dynamic parallel query.. useQueries
+- 순서가 있는 쿼리들 실행하기 : dependent Queries.. 이전 쿼리가 실행 완료 되었을때만 config obj에 enable을 true가 되도록 설정.
+
 ## RQ devtool 사용법
 
 ```
