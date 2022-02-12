@@ -56,6 +56,10 @@
 - 리스트에서 상세정보를 일부 들고 있는 경우 상세쿼리의 initial data로 넘겨줘서 상세쿼리 fetching시 미리 보여줄 수 있다.
 - 리스트에서 상세정보를 모두 들고 있는 경우는 추가적인 상세쿼리가 필요 없을 수 있다.
 
+## 페이징
+
+- useQuery 설정 : keepPreviousData: true,
+
 ## RQ devtool 사용법
 
 ```
